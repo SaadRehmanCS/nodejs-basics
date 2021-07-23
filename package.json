@@ -1,0 +1,27 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaadRehmanCS/nodejs-basics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaadRehmanCS/nodejs-basics/issues"
+  },
+  "homepage": "https://github.com/SaadRehmanCS/nodejs-basics#readme",
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
