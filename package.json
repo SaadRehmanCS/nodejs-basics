@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,6 @@
   },
   "homepage": "https://github.com/SaadRehmanCS/nodejs-basics#readme",
   "dependencies": {
-    "bootstrap": "^5.0.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
