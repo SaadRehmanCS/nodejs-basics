@@ -1,10 +1,7 @@
-const http = require('http');
+const { createReadStream } = require('fs') ;
 
-const server = http.createServer((req, res) => {
-    res.write('Welcome to my home page');
-    console.log(req);
-    console.log('dedde');
-    res.end();
+const stream = createReadStream('./content/big.txt', { encoding: 'utf-8'});
+
+stream.on('data', (result) => {
+    console.log(result);
 })
-
-server.listen(3000);
