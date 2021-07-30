@@ -6,17 +6,19 @@ const people = require('./data').people;
 //any .get calls above this function will not work. Order matters
 app.use(express.static('./methods-public'));
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Home');
-})
-
-app.get('/about', (req, res) => {
-    res.send('About');
-})
 
 app.get('/api', (req, res) => {
     res.status(200).json({ success: true, data: people });
+})
+
+app.post('/api', (req, res) => {
+    const { name } = req.body;
+    if (!name) {
+        return res.status(400).json({success: false, msg: 'provide name value'})
+    }
+    res.status(201).send({success: true, person: name});
 })
 
 app.post('/login', (req, res) => {
