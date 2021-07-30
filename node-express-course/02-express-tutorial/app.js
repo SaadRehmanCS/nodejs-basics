@@ -1,41 +1,34 @@
 const express = require('express');
 const app = express();
-const { products } = require('./data');
+const people = require('./data').people;
+
+//provide a path as first arg to apply middleware to specific route.
+//any .get calls above this function will not work. Order matters
+app.use(express.static('./methods-public'));
+app.use(express.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-    res.send('<a href="/api/products">Products</a>')
+    res.send('Home');
 })
 
-app.get('/api/products', (req, res) => {
-    const newProducts = products.map((product) => {
-        const { id, name, image } = product;
-        return { id, name, image };
-    });
-    res.status(200).json(newProducts);
-    
+app.get('/about', (req, res) => {
+    res.send('About');
 })
 
-app.get('/api/products/:productID', (req, res) => {
-    const { productID } = req.params;
-    const product = products.find((product) => product.id === Number(productID));
-    //res.json(product);
-    res.json(product)
-    console.log(req.params);
-});
+app.get('/api', (req, res) => {
+    res.status(200).json({ success: true, data: people });
+})
 
-app.get('/api/v1/query', (req, res) => {
-    //console.log(req.query);
-    const { search, limit } = req.query;
-    let sortedProducts = [...products];
-    if (search) {
-        sortedProducts = sortedProducts.filter((product) => product.name.startsWith(search))
+app.post('/login', (req, res) => {
+    const { name } = req.body;
+    if (name) {
+        return res.status(200).send(`Welcome ${name}`);
+    } else {
+        return res.status(401).send('Please provide name');
     }
-    if (limit) {
-        sortedProducts = sortedProducts.slice(0, Number(limit));
-    }
-    res.status(200).json(sortedProducts);
+   
 })
 
 app.listen(5000, () => {
-    console.log('sever is listening');
-})
+    console.log('serve sis dlistneing');
+});
